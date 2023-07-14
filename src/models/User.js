@@ -11,8 +11,12 @@ const UserModel = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     image: DataTypes.STRING,
   },{
-    underscore: true,
-    tableName: 'User',
+    underscored: true,
+    tableName: 'users',
     timestamps: false,
   });
+
+  return User;
 };
+
+module.exports = UserModel;

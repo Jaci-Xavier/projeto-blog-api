@@ -5,7 +5,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('posts_categories', {
-      id: {
+      postId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         field: 'post_id',
