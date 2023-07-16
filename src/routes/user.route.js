@@ -24,4 +24,11 @@ userRouter.get(
   controller.getAllUsers,
   );
 
+userRouter.get(
+  '/:id',
+  existToken,
+  validateToken,
+  controller.getById,
+);
+
 module.exports = userRouter;

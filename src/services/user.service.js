@@ -11,6 +11,17 @@ const createUser = async (body) => {
   return userToken;
 };
 
+const getById = async (id) => {
+  const user = await User.findByPk(id, { attributes: { exclude: ['password'] } });
+  console.log('achou user');
+  
+  if (!user || user === null) {
+    console.log('entrou no if');
+    return { message: 'User does not exist' };
+  }
+  return user;
+};
+
 const getAllUsers = async () => {
   const allUsers = await User.findAll({ attributes: { exclude: ['password'] } });
 
@@ -20,4 +31,5 @@ const getAllUsers = async () => {
 module.exports = {
   createUser,
   getAllUsers,
+  getById,
  };
