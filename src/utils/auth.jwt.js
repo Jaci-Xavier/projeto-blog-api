@@ -9,8 +9,9 @@ const createToken = (payload) => {
   return token;
 };
 
-// const validateToken = async () => {
+const verifyToken = (token) => jwt.verify(token, secret);
 
-// };
-
-module.exports = createToken;
+module.exports = { 
+  createToken,
+  verifyToken,
+ };

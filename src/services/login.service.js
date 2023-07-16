@@ -1,18 +1,18 @@
 const { Op } = require('sequelize');
 const { User } = require('../models');
-const createToken = require('./auth.jwt');
+const { createToken } = require('../utils/auth.jwt');
 
-const filterPassword = (obj) => {
-  const excludeKey = 'password';
-  const filtredObj = Object.keys(obj)
-    .filter((key) => key !== excludeKey)
-    .reduce((acc, key) => {
-      acc[key] = obj[key];
-      return acc;
-    }, {});
+// const filterPassword = (obj) => {
+//   const excludeKey = 'password';
+//   const filtredObj = Object.keys(obj)
+//     .filter((key) => key !== excludeKey)
+//     .reduce((acc, key) => {
+//       acc[key] = obj[key];
+//       return acc;
+//     }, {});
 
-  return filtredObj;    
-};
+//   return filtredObj;    
+// };
 
 const login = async (email, password) => {
   const client = await User.findAll({ where:
@@ -22,8 +22,10 @@ const login = async (email, password) => {
   if (client.length === 0) {
     return { message: 'Invalid fields' };
   }
-  const payload = filterPassword(client[0].dataValues);
-  const userToken = createToken(payload);
+  const { id } = client[0].dataValues;
+
+  // const payload = filterPassword(client[0].dataValues);
+  const userToken = createToken({ email, id });
   return userToken;
 };
 

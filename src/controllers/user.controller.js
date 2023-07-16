@@ -2,7 +2,6 @@ const userService = require('../services/user.service');
 
 const createUser = async (req, res) => {
   const userData = req.body;
-  // console.log(displayName);
 
   const token = await userService.createUser({ ...userData });
 
@@ -11,4 +10,12 @@ const createUser = async (req, res) => {
   res.status(201).json({ token });
 };
 
-module.exports = { createUser };
+const getAllUsers = async (req, res) => {
+  const allUsers = await userService.getAllUsers();
+
+  if (allUsers.message) return res.status(allUsers.status).json({ message: allUsers.message });
+
+  res.status(200).json(allUsers);
+};
+
+module.exports = { createUser, getAllUsers };

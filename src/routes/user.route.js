@@ -4,6 +4,7 @@ const passwordValidate = require('../middleware/passwordValidate');
 const emailRegex = require('../middleware/emailRegex');
 const { displayNameValidate } = require('../middleware/displayNameValidate');
 const existingEmail = require('../middleware/verifyUserExist');
+const { existToken, validateToken } = require('../middleware/verifyToken');
 
 const userRouter = express.Router();
 
@@ -15,5 +16,12 @@ displayNameValidate,
 emailRegex,
 controller.createUser,
 );
+
+userRouter.get(
+  '/',
+  existToken,
+  validateToken,
+  controller.getAllUsers,
+  );
 
 module.exports = userRouter;
