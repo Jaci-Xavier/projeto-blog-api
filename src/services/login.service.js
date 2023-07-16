@@ -11,27 +11,20 @@ const filterPassword = (obj) => {
       return acc;
     }, {});
 
-  return filtredObj;
+  return filtredObj;    
 };
 
 const login = async (email, password) => {
   const client = await User.findAll({ where:
     { [Op.and]: [{ email }, { password }] },
   });
-  
+
   if (client.length === 0) {
     return { message: 'Invalid fields' };
   }
   const payload = filterPassword(client[0].dataValues);
   const userToken = createToken(payload);
   return userToken;
-
-  // switch (true) {
-  //   case !client || client.password !== password:
-  //     return { message: 'Invalid fields' };
-  //   default:
-  //     return userToken;
-  // }
 };
 
 module.exports = { login };
