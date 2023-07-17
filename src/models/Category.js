@@ -4,6 +4,7 @@ const CategoryModel = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
+      autoIncrement: true,
     },
     name: DataTypes.STRING,
   }, {
