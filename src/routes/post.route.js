@@ -13,4 +13,11 @@ postRouter.post(
   controller.createPost,
 );
 
+postRouter.get(
+  '/',
+  existToken,
+  validateToken,
+  controller.getPost,
+);
+
 module.exports = postRouter;
