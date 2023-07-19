@@ -30,7 +30,21 @@ const getById = async (req, res) => {
 
   if (postById.message) return res.status(postById.status).json({ message: postById.message });
 
-  return res.status(200).json(postById);
+  res.status(200).json(postById);
 };
 
-module.exports = { createPost, getPost, getById };
+const putById = async (req, res) => {
+  const { id: userId } = req.user;
+  const { title, content } = req.body;
+  const { id } = req.params;
+
+  const updatedPost = await postService.putById(id, title, content, userId);
+
+  if (updatedPost.message) {
+    return res.status(updatedPost.status).json({ message: updatedPost.message });
+  }
+
+  res.status(200).json(updatedPost);
+};
+
+module.exports = { createPost, getPost, getById, putById };

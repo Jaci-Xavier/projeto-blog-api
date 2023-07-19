@@ -48,4 +48,8 @@ const getById = async (id) => {
   return postById;
 };
 
-module.exports = { createPost, getPost, getById };
+const putById = async () => {
+
+};
+
+module.exports = { createPost, getPost, getById, putById };

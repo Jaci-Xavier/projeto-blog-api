@@ -27,4 +27,12 @@ postRouter.get(
   controller.getById,
 );
 
+postRouter.put(
+  '/:id',
+  existToken,
+  validateToken,
+  postValidate,
+  controller.putById,
+);
+
 module.exports = postRouter;
