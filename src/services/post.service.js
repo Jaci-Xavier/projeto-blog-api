@@ -38,8 +38,6 @@ const getById = async (id) => {
     ],
   });
 
-  console.log(postById);
-
   if (!postById) {
     return {
     status: 404,
